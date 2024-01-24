@@ -25,7 +25,7 @@ def difference_in_minutes(checkInTime: datetime, checkOutTime: datetime) -> int:
 def type_vehicle(plate: str):
     if len(plate) > 8:
         return "bicicleta"
-    elif len(plate) == 5:
+    elif len(plate) == 6:
         return "moto"
     else:
         last_character = plate[-1]

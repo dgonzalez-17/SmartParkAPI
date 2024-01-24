@@ -35,6 +35,8 @@ def bot_workflow(data: dict):
         return get_today_earnings()
     elif user_message.startswith("ver ganancias de este mes"):
         return get_month_earnings()
+    elif user_message.startswith("ver estadisticas"):
+        return "https://dgonzalez271.grafana.net/public-dashboards/5bce11aad21f405e8b574449e994d515"
     else:
         return "Esta opción no es disponible, recuerda que con /help puedes ver las acciones disponibles.\nCon SmartParkBot queremos hacerte la vida más fácil."
 
@@ -46,6 +48,9 @@ def post_historical_data(user_message: str):
     for i in user_message:
         if i[0] in letras_espanolas:
             plate = i.upper()
+            break
+        elif i.isdigit():
+            plate = i
             break
     historical = historical_service.create_historical(Historical(**{'plate': plate}))
     print(historical)
@@ -59,9 +64,11 @@ def put_historical_data(user_message: str):
     user_message = user_message.split(" ")
     plate = "";
     for i in user_message:
-        print(i)
         if i[0] in letras_espanolas:
             plate = i.upper()
+            break
+        elif i.isdigit():
+            plate = i
             break
     historical = historical_service.update_one_paid_by_plate(Historical(**{'plate': plate}))
     print(historical)

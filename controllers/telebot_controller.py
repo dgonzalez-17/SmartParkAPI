@@ -24,7 +24,7 @@ def telegram_webhook(data: dict):
 @bot.message_handler(commands=["start"])
 def start_bot(message):
     bot.reply_to(message, """
-
+    Hola, soy SmartParkBot, estoy aquí para ayudarte, escribe /help para que puedas conocer todo lo que puedo hacer.
 """)
 
 @bot.message_handler(commands=["help"])
@@ -38,7 +38,8 @@ def help_bot(message):
 \"Ingresar vehiculo \"placa\"\" -> Envias la placa del vehiculo en la forma "XDE-897" para carros y motos y "101004596" para bicicletas. Te devolverá la hora de ingreso.\n
 \"Salida vehiculo \"placa\"\" -> Envias la placa del vehiculo en la forma "XDE-897" para carros y motos y "101004596" para bicicletas. Te devolverá la hora en que se registró la salida y el total a pagar.\n
 \"Ver ganancias de hoy\" -> "Te devolverá ganancias del día de hoy.\n
-\"Ver ganancias de este mes\" -> Te devolvera ganancias del este mes.\n
+\"Ver ganancias de este mes\" -> Te devolverá ganancias del este mes.\n
+\"Ver estadisticas\" -> Te devolverá un enlace para ver las estadisticas.\n
 """)
 
 
@@ -58,7 +59,7 @@ def send_especific_message(data: dict):
     bot.send_message(chat_id=data['id'], text=data['message'])
 
 
-webhook_url = "https://bfdd-186-147-127-14.ngrok-free.app/telegram/webhook"
+webhook_url = "smartparkapi-production.up.railway.app/telegram/webhook"
 bot.remove_webhook()
 bot.set_webhook(url=webhook_url)
 
